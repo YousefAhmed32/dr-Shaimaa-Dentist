@@ -1,6 +1,7 @@
-import { Download, Mail, MapPin, Phone } from "lucide-react";
+import { Download, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import PageIntro from "../components/PageIntro";
 import { useLanguage } from "../context/LanguageContext";
+import { getWhatsAppHref, PHONE_DISPLAY, PHONE_HREF } from "../data/contact";
 
 export default function AboutPage() {
   const { t, isArabic } = useLanguage();
@@ -27,13 +28,19 @@ export default function AboutPage() {
             <h3>{t.about.skills}</h3>
             <ul className="skills-list">{t.about.skillItems.map((skill) => <li key={skill}>{skill}</li>)}</ul>
           </section>
+          <section>
+            <h3>{t.about.professionalDetails}</h3>
+            <div className="detail-block"><strong>{t.about.affiliationLabel}</strong><span>{t.about.affiliation}</span></div>
+            <div className="detail-block"><strong>{t.about.languagesLabel}</strong><span>{t.about.languages}</span></div>
+          </section>
         </div>
       </section>
       <section className="contact-band shell">
         <div><p className="section-kicker">{t.common.contact}</p><h2>{isArabic ? "متاحة لفرص العمل والتعاون مع العيادات." : "Open to professional opportunities and clinic collaboration."}</h2></div>
         <address>
           <a href="mailto:shymaahassan39@gmail.com"><Mail aria-hidden="true" />shymaahassan39@gmail.com</a>
-          <a href="tel:+201118814870"><Phone aria-hidden="true" /><bdi>+20 111 881 4870</bdi></a>
+          <a href={PHONE_HREF}><Phone aria-hidden="true" /><bdi>{PHONE_DISPLAY}</bdi></a>
+          <a href={getWhatsAppHref(isArabic)} target="_blank" rel="noreferrer"><MessageCircle aria-hidden="true" />{t.common.whatsappCta}</a>
           <span><MapPin aria-hidden="true" />{t.common.location}</span>
         </address>
       </section>

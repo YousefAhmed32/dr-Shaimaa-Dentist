@@ -40,6 +40,9 @@ A bilingual clinical portfolio where real dental work is the primary proof. The 
 - Navigation completes on the first click; route animation may not delay or blank content.
 - Gallery images open in an accessible dialog with close, zoom, previous, and next controls.
 - Filters animate only the content state they change.
+- The practice-area rail uses a continuous marquee that pauses on hover and becomes static under reduced motion.
+- Homepage sections use alternating physical left/right wipe reveals at section level; never animate every text line independently.
+- WhatsApp is a persistent contact shortcut, while the CV remains a first-viewport and closing-CTA action.
 - Touch targets are at least `44px`; keyboard focus is always visible.
 - Reduced motion renders content in its final state.
 

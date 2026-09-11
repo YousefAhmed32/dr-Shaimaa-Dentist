@@ -1,8 +1,9 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { getWhatsAppHref, PHONE_DISPLAY, PHONE_HREF } from "../data/contact";
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, isArabic } = useLanguage();
   return (
     <footer className="site-footer">
       <div className="shell footer-grid">
@@ -13,7 +14,8 @@ export default function Footer() {
         </div>
         <address className="contact-list">
           <a href="mailto:shymaahassan39@gmail.com"><Mail aria-hidden="true" /><span><small>{t.common.email}</small>shymaahassan39@gmail.com</span></a>
-          <a href="tel:+201118814870"><Phone aria-hidden="true" /><span><small>{t.common.phone}</small><bdi>+20 111 881 4870</bdi></span></a>
+          <a href={PHONE_HREF}><Phone aria-hidden="true" /><span><small>{t.common.phone}</small><bdi>{PHONE_DISPLAY}</bdi></span></a>
+          <a href={getWhatsAppHref(isArabic)} target="_blank" rel="noreferrer"><MessageCircle aria-hidden="true" /><span><small>{t.common.whatsapp}</small>{t.common.whatsappCta}</span></a>
           <span><MapPin aria-hidden="true" /><span><small>{t.common.locationLabel}</small>{t.common.location}</span></span>
         </address>
       </div>

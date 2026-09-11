@@ -1,9 +1,12 @@
-import { ArrowLeft, ArrowUpLeft, Download, MoveUpRight } from "lucide-react";
+import { ArrowLeft, Download, MessageCircle, MoveUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { Link } from "react-router-dom";
 import Gallery from "../components/Gallery";
 import SectionHeading from "../components/SectionHeading";
+import RevealSection from "../components/RevealSection";
+import SpecialtyMarquee from "../components/SpecialtyMarquee";
 import { useLanguage } from "../context/LanguageContext";
+import { getWhatsAppHref } from "../data/contact";
 import { clinicalMedia, conceptMedia, credentialMedia } from "../data/media";
 
 export default function HomePage() {
@@ -14,20 +17,21 @@ export default function HomePage() {
   return (
     <>
       <section className="hero shell">
-        <motion.div className="hero-copy" initial={reduceMotion ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .65, ease: [.22, 1, .36, 1] }}>
+        <motion.div className="hero-copy" initial={reduceMotion ? false : { opacity: 0, x: 44 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .82, ease: [.16, 1, .3, 1] }}>
           <p className="section-kicker">{t.home.kicker}</p>
           <h1>{t.home.title}</h1>
           <p className="hero-lead">{t.home.lead}</p>
           <div className="hero-actions">
             <Link className="button button-primary" to="/cases">{t.home.primary}<MoveUpRight aria-hidden="true" /></Link>
-            <a className="button button-quiet" href="mailto:shymaahassan39@gmail.com">{t.home.secondary}<ArrowUpLeft aria-hidden="true" /></a>
+            <a className="button button-secondary" href="/downloads/Dr-Shaimaa-Mahmoud-Hassan-CV.pdf" download>{t.common.downloadCv}<Download aria-hidden="true" /></a>
+            <a className="button button-quiet" href={getWhatsAppHref(isArabic)} target="_blank" rel="noreferrer">{t.home.secondary}<MessageCircle aria-hidden="true" /></a>
           </div>
           <dl className="metric-rail">
             {["33", "127+", "84"].map((value, index) => <div key={value}><dt>{value}</dt><dd>{t.home.metrics[index]}</dd></div>)}
           </dl>
         </motion.div>
 
-        <motion.figure className="hero-stage" initial={reduceMotion ? false : { opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .8, delay: .08, ease: [.22, 1, .36, 1] }}>
+        <motion.figure className="hero-stage" initial={reduceMotion ? false : { opacity: 0, x: -44, scale: .96 }} animate={{ opacity: 1, x: 0, scale: 1 }} transition={{ duration: .92, delay: .08, ease: [.16, 1, .3, 1] }}>
           <div className="stage-grid" aria-hidden="true" />
           <motion.img
             className="hero-molar"
@@ -44,34 +48,32 @@ export default function HomePage() {
         </motion.figure>
       </section>
 
-      <section className="signal-strip" aria-label={t.home.kicker}>
-        <div className="shell signal-inner">{t.home.disciplines.map((item) => <span key={item}>{item}<i aria-hidden="true" /></span>)}</div>
-      </section>
+      <SpecialtyMarquee />
 
-      <section className="content-section home-work shell">
+      <RevealSection direction="right" className="content-section home-work shell">
         <SectionHeading kicker={t.home.casesKicker} title={t.home.casesTitle} lead={t.home.casesLead} />
         <Gallery items={featuredCases} />
         <div className="section-action">
           <Link className="button button-section" to="/cases"><span>{isArabic ? "استعرض معرض الأعمال كاملًا" : "Explore the complete work archive"}</span><ArrowLeft aria-hidden="true" /></Link>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="content-section home-credentials shell">
+      <RevealSection direction="left" className="content-section home-credentials shell">
         <SectionHeading kicker={t.home.credentialsKicker} title={t.home.credentialsTitle} lead={t.home.credentialsLead} />
         <Gallery items={credentialMedia.slice(0, 3)} />
         <div className="section-action">
           <Link className="button button-section" to="/credentials"><span>{isArabic ? "استعرض جميع الشهادات والاعتمادات" : "Explore all credentials"}</span><ArrowLeft aria-hidden="true" /></Link>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="content-section content-section--contrast">
+      <RevealSection direction="right" className="content-section content-section--contrast">
         <div className="shell">
           <SectionHeading kicker={t.home.systemsKicker} title={t.home.systemsTitle} lead={t.home.systemsLead} />
           <Gallery items={conceptMedia} limit={3} />
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="profile-band">
+      <RevealSection direction="left" className="profile-band">
         <div className="shell profile-band-grid">
           <div>
             <p className="section-kicker">{t.home.profileKicker}</p>
@@ -86,12 +88,15 @@ export default function HomePage() {
             <a className="button button-inverse" href="/downloads/Dr-Shaimaa-Mahmoud-Hassan-CV.pdf" download>{t.about.download}<Download aria-hidden="true" /></a>
           </div>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="home-cta shell">
+      <RevealSection direction="right" className="home-cta shell">
         <div><p className="section-kicker">{t.common.contact}</p><h2>{t.home.ctaTitle}</h2><p>{t.home.ctaLead}</p></div>
-        <a className="button button-primary" href="mailto:shymaahassan39@gmail.com">{t.home.ctaButton}<ArrowUpLeft aria-hidden="true" /></a>
-      </section>
+        <div className="home-cta-actions">
+          <a className="button button-whatsapp" href={getWhatsAppHref(isArabic)} target="_blank" rel="noreferrer">{t.home.ctaButton}<MessageCircle aria-hidden="true" /></a>
+          <a className="button button-quiet" href="/downloads/Dr-Shaimaa-Mahmoud-Hassan-CV.pdf" download>{t.common.downloadCv}<Download aria-hidden="true" /></a>
+        </div>
+      </RevealSection>
     </>
   );
 }

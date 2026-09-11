@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { ArrowUpLeft, Languages, Menu, X } from "lucide-react";
+import { Languages, Menu, MessageCircle, X } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import { getWhatsAppHref } from "../data/contact";
 
 export default function Header() {
-  const { t, language, toggleLanguage } = useLanguage();
+  const { t, language, isArabic, toggleLanguage } = useLanguage();
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   useEffect(() => setOpen(false), [pathname]);
@@ -26,7 +27,7 @@ export default function Header() {
         {links.map(([to, label]) => <NavLink key={to} to={to} end={to === "/"} className={({ isActive }) => isActive ? "active" : undefined}>{label}</NavLink>)}
       </nav>
       <div className="header-actions">
-        <a className="header-cta" href="mailto:shymaahassan39@gmail.com">{t.common.contactCta}<ArrowUpLeft aria-hidden="true" /></a>
+        <a className="header-cta" href={getWhatsAppHref(isArabic)} target="_blank" rel="noreferrer">{t.common.contactCta}<MessageCircle aria-hidden="true" /></a>
         <button className="language-switch" type="button" onClick={toggleLanguage} aria-label={language === "ar" ? "Switch to English" : "التبديل إلى العربية"}>
           <Languages aria-hidden="true" /><span>{language === "ar" ? "EN" : "عربي"}</span>
         </button>

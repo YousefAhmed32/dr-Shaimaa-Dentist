@@ -21,6 +21,7 @@ body::before {
   background-image: linear-gradient(rgba(2,132,199,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(2,132,199,.025) 1px, transparent 1px);
   background-size: 3.5rem 3.5rem;
 }
+main { overflow-x: clip; }
 button, input, select, textarea { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { color: inherit; }
@@ -87,6 +88,8 @@ svg { width: 1.2rem; height: 1.2rem; stroke-width: 1.8; }
 .button { min-height: 3.125rem; padding: .72rem 1.25rem; display: inline-flex; align-items: center; justify-content: center; gap: .7rem; border: 1px solid var(--color-ink); border-radius: var(--radius-pill); text-decoration: none; font-weight: 750; transition: color .2s, background .2s, border-color .2s; }
 .button-primary { color: white; background: var(--color-ink); }
 .button-primary:hover { background: var(--color-cyan); border-color: var(--color-cyan); }
+.button-secondary { color: var(--color-ink); border-color: var(--color-line-strong); background: var(--color-surface); }
+.button-secondary:hover { border-color: var(--color-cyan); background: var(--color-cyan-pale); }
 .button-quiet { border-color: transparent; }
 .button-quiet:hover { border-color: var(--color-line); background: var(--color-surface); }
 .button-inverse { color: var(--color-ink); border-color: white; background: white; }
@@ -111,7 +114,15 @@ svg { width: 1.2rem; height: 1.2rem; stroke-width: 1.8; }
 .hero-stage figcaption { position: absolute; z-index: 3; inset-inline: 1.35rem; inset-block-end: 1.35rem; padding: .85rem 1rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; color: white; border: 1px solid rgba(255,255,255,.2); border-radius: .9rem; background: rgba(7,17,31,.76); backdrop-filter: blur(.9rem); }
 .hero-stage figcaption span { color: #7dd3fc; font-size: .7rem; font-weight: 750; letter-spacing: .055em; }
 .hero-stage figcaption strong { font-size: .88rem; }
-.signal-strip { border-block: 1px solid var(--color-line); background: var(--color-surface); }
+.signal-strip { position: relative; overflow: hidden; border-block: 1px solid var(--color-line); background: var(--color-surface); }
+.signal-strip::after { content: ""; position: absolute; inset-block: 0; inset-inline-start: 0; width: 18%; pointer-events: none; background: linear-gradient(90deg, color-mix(in srgb, var(--color-cyan) 9%, transparent), transparent); }
+.marquee-viewport { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.marquee-track { width: max-content; display: flex; direction: ltr; animation: marquee-flow 24s linear infinite; will-change: transform; }
+.marquee-group { min-width: 100vw; padding-inline: clamp(1.5rem, 4vw, 4rem); flex: 0 0 auto; display: flex; align-items: center; justify-content: space-around; gap: clamp(2.5rem, 6vw, 6rem); }
+.marquee-item { min-height: 4.5rem; flex: 0 0 auto; display: inline-flex; align-items: center; gap: 1rem; color: var(--color-ink); font-size: .86rem; font-weight: 730; white-space: nowrap; }
+.marquee-item i { width: .38rem; height: .38rem; flex: 0 0 auto; border-radius: 50%; background: var(--color-cyan); box-shadow: 0 0 0 .35rem var(--color-cyan-pale); }
+.signal-strip:hover .marquee-track, .signal-strip:focus-within .marquee-track { animation-play-state: paused; }
+@keyframes marquee-flow { to { transform: translateX(-50%); } }
 .signal-inner { min-height: 4.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
 .signal-inner span { display: flex; align-items: center; gap: clamp(1rem, 4vw, 4rem); color: var(--color-ink-soft); font-size: .82rem; font-weight: 700; }
 .signal-inner i { width: .3rem; height: .3rem; display: block; border-radius: 50%; background: var(--color-cyan); }
@@ -139,6 +150,7 @@ svg { width: 1.2rem; height: 1.2rem; stroke-width: 1.8; }
 .button-section { min-width: min(100%, 22rem); justify-content: space-between; color: white; border-color: var(--color-ink); border-radius: .7rem; background: var(--color-ink); }
 .button-section:hover { color: white; border-color: var(--color-cyan); background: var(--color-cyan); }
 [dir="rtl"] .button-section svg { transform: scaleX(-1); }
+.reveal-section { transform-origin: center; }
 
 .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .gallery-card { position: relative; min-width: 0; border: 1px solid var(--color-line); border-radius: var(--radius-md); background: var(--color-surface); overflow: hidden; transition: border-color .25s, box-shadow .32s; }
@@ -188,6 +200,15 @@ svg { width: 1.2rem; height: 1.2rem; stroke-width: 1.8; }
 [dir="rtl"] .home-cta h2 { line-height: 1.32; letter-spacing: 0; }
 .home-cta p:not(.section-kicker) { max-width: 39rem; margin: 1rem 0 0; color: var(--color-ink-soft); }
 [dir="rtl"] .home-cta .button svg { transform: scaleX(-1); }
+.home-cta-actions { display: grid; gap: .7rem; }
+.button-whatsapp { color: #062e1c; border-color: #25d366; background: #25d366; }
+.button-whatsapp:hover { color: white; border-color: #128c4a; background: #128c4a; }
+
+.whatsapp-float { position: fixed; z-index: 90; right: clamp(.8rem, 2vw, 1.5rem); bottom: clamp(.8rem, 2vw, 1.5rem); min-height: 3.5rem; padding: .8rem 1.05rem; display: inline-flex; align-items: center; gap: .65rem; color: #062e1c; border: 1px solid rgba(6,46,28,.24); border-radius: var(--radius-pill); background: #25d366; box-shadow: 0 1.1rem 2.8rem rgba(6,46,28,.25); text-decoration: none; font-size: .82rem; font-weight: 800; isolation: isolate; }
+.whatsapp-float:hover { color: white; background: #128c4a; }
+.whatsapp-float svg { width: 1.35rem; height: 1.35rem; }
+.whatsapp-pulse { position: absolute; z-index: -1; inset: 0; border: 1px solid #25d366; border-radius: inherit; animation: whatsapp-ring 2.4s ease-out infinite; }
+@keyframes whatsapp-ring { 0% { opacity: .65; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.22); } }
 
 .page-intro { padding-block: clamp(4.5rem, 8vw, 8rem); display: grid; grid-template-columns: minmax(0, 1fr) 15rem; align-items: end; gap: clamp(2rem, 7vw, 7rem); border-block-end: 1px solid var(--color-line); }
 .page-intro h1 { max-width: 13ch; font-size: clamp(3rem, 6vw, 5.75rem); }
@@ -301,6 +322,9 @@ svg { width: 1.2rem; height: 1.2rem; stroke-width: 1.8; }
   .hero { padding-block: 3.25rem 4rem; gap: 2.25rem; }
   .hero h1, .page-intro h1 { font-size: clamp(2.75rem, 14vw, 4.25rem); }
   .hero-lead { margin-block-start: 1.3rem; font-size: 1rem; }
+  .hero-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-actions .button { width: 100%; padding-inline: .8rem; font-size: .86rem; }
+  .hero-actions .button-primary { grid-column: 1 / -1; }
   .metric-rail { grid-template-columns: 1fr; margin-block-start: 2rem; }
   .metric-rail div { padding-block: .75rem; display: grid; grid-template-columns: 5.2rem 1fr; align-items: center; }
   .metric-rail div + div { padding-inline-start: 0; border-inline-start: 0; border-block-start: 1px solid var(--color-line); }
@@ -324,6 +348,8 @@ svg { width: 1.2rem; height: 1.2rem; stroke-width: 1.8; }
   .detail-block time { grid-row: auto; }
   .section-action { justify-content: stretch; }
   .button-section { width: 100%; }
+  .whatsapp-float { width: 3.5rem; padding: 0; justify-content: center; border-radius: 50%; }
+  .whatsapp-float > span:last-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .contact-band { padding: 1.5rem; border-radius: var(--radius-md); }
   .footer-grid, .privacy-rail { grid-template-columns: 1fr; }
   .lightbox-panel { width: 100%; height: 100svh; border: 0; border-radius: 0; }
@@ -337,4 +363,7 @@ svg { width: 1.2rem; height: 1.2rem; stroke-width: 1.8; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .marquee-track { width: 100%; transform: none !important; }
+  .marquee-group { min-width: 100%; flex-wrap: wrap; justify-content: center; }
+  .marquee-group[aria-hidden="true"] { display: none; }
 }
