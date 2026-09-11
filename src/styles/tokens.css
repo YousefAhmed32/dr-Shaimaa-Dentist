@@ -1,0 +1,35 @@
+:root {
+  --color-ink: #07111f;
+  --color-ink-soft: #465568;
+  --color-paper: #f6f9fb;
+  --color-surface: #ffffff;
+  --color-surface-soft: #edf5f8;
+  --color-cyan: #0284c7;
+  --color-cyan-bright: #0ea5e9;
+  --color-cyan-pale: #dff4fc;
+  --color-line: #c9dae3;
+  --color-line-strong: #9eb7c5;
+  --color-focus: #075985;
+  --color-danger: #b91c1c;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --radius-sm: .625rem;
+  --radius-md: 1.125rem;
+  --radius-lg: 1.75rem;
+  --radius-pill: 999px;
+  --shadow-card: 0 18px 44px rgba(7, 17, 31, .07);
+  --shadow-float: 0 34px 76px rgba(7, 17, 31, .14);
+  --page-width: min(82.5rem, calc(100% - 3rem));
+  --header-height: 5.125rem;
+  --ease-out: cubic-bezier(.2, .75, .25, 1);
+}
