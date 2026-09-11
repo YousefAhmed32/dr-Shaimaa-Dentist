@@ -14,7 +14,7 @@ export default function Footer() {
         <address className="contact-list">
           <a href="mailto:shymaahassan39@gmail.com"><Mail aria-hidden="true" /><span><small>{t.common.email}</small>shymaahassan39@gmail.com</span></a>
           <a href="tel:+201118814870"><Phone aria-hidden="true" /><span><small>{t.common.phone}</small><bdi>+20 111 881 4870</bdi></span></a>
-          <span><MapPin aria-hidden="true" /><span><small>{t.common.location}</small>Egyptian Dental Syndicate</span></span>
+          <span><MapPin aria-hidden="true" /><span><small>{t.common.locationLabel}</small>{t.common.location}</span></span>
         </address>
       </div>
       <div className="shell privacy-rail"><strong>{t.common.privateLabel}</strong><span>{t.common.privacy}</span></div>

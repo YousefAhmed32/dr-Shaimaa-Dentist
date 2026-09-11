@@ -21,14 +21,14 @@ export default function CredentialsPage() {
           <img src={featured.path} alt={isArabic ? featured.titleAr : featured.titleEn} />
         </button>
         <div className="credential-copy">
-          <p className="section-kicker">02 / {t.credentials.featured}</p>
+          <p className="section-kicker">{t.credentials.featured}</p>
           <h2>{t.credentials.featuredTitle}</h2>
           <p>{t.credentials.featuredBody}</p>
           <dl><div><dt>84</dt><dd>{isArabic ? "ساعة معتمدة" : "Credit hours"}</dd></div><div><dt>2026</dt><dd>{isArabic ? "الإسكندرية، مصر" : "Alexandria, Egypt"}</dd></div><div><dt><bdi>#202602027</bdi></dt><dd>{isArabic ? "رمز التحقق" : "Verification code"}</dd></div></dl>
         </div>
       </section>
       <section className="content-section content-section--border shell" id="credential-gallery">
-        <SectionHeading index="03" kicker={t.nav.credentials} title={isArabic ? "السجل الكامل للشهادات والتقدير." : "The complete credential archive."} lead={isArabic ? "اضغط على أي شهادة لعرضها بالحجم الكامل والتنقل بين المستندات." : "Open any credential at full size and move through the archive without leaving the page."} />
+        <SectionHeading kicker={t.nav.credentials} title={isArabic ? "السجل الكامل للشهادات والتقدير." : "The complete credential archive."} lead={isArabic ? "اضغط على أي شهادة لعرضها بالحجم الكامل والتنقل بين المستندات." : "Open any credential at full size and move through the archive without leaving the page."} />
         <Gallery items={credentialMedia} />
       </section>
     </>

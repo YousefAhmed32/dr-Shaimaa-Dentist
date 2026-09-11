@@ -30,7 +30,7 @@ export default function Header() {
         <button className="language-switch" type="button" onClick={toggleLanguage} aria-label={language === "ar" ? "Switch to English" : "التبديل إلى العربية"}>
           <Languages aria-hidden="true" /><span>{language === "ar" ? "EN" : "عربي"}</span>
         </button>
-        <button className="menu-button" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? t.common.close : t.nav.home}>
+        <button className="menu-button" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? t.common.close : t.common.openMenu}>
           {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
       </div>

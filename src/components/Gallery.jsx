@@ -38,10 +38,10 @@ export default function Gallery({ items, categories = [], showFilters = false, l
                 className={`gallery-card gallery-card--${media.kind}`}
                 key={media.id}
                 layout={!reduceMotion}
-                initial={reduceMotion ? false : { opacity: 0, y: 18, scale: .98 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, amount: .15 }}
-                transition={{ duration: .44, ease: [.22, 1, .36, 1], delay: Math.min(index, 5) * .035 }}
+                initial={reduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={reduceMotion ? undefined : { opacity: 0 }}
+                transition={{ duration: .24, ease: [.22, 1, .36, 1] }}
               >
                 <button type="button" className="gallery-open" onClick={() => setActiveIndex(index)} aria-label={`${t.common.openImage}: ${title}`}>
                   <span className="gallery-image">
@@ -49,7 +49,7 @@ export default function Gallery({ items, categories = [], showFilters = false, l
                     <span className="expand-chip"><Expand aria-hidden="true" /></span>
                   </span>
                   <span className="gallery-caption">
-                    <span><small>{String(index + 1).padStart(2, "0")} / {t.categories[media.category]}</small><strong>{title}</strong></span>
+                    <span><small>{t.categories[media.category]}</small><strong>{title}</strong></span>
                     <ImageIcon aria-hidden="true" />
                   </span>
                 </button>

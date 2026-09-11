@@ -1,7 +1,7 @@
 :root {
   --color-ink: #07111f;
   --color-ink-soft: #465568;
-  --color-paper: #f6f9fb;
+  --color-paper: #f4f8fa;
   --color-surface: #ffffff;
   --color-surface-soft: #edf5f8;
   --color-cyan: #0284c7;
@@ -25,12 +25,12 @@
   --space-20: 5rem;
   --space-24: 6rem;
   --radius-sm: .625rem;
-  --radius-md: 1.125rem;
-  --radius-lg: 1.75rem;
+  --radius-md: .875rem;
+  --radius-lg: 1.35rem;
   --radius-pill: 999px;
   --shadow-card: 0 18px 44px rgba(7, 17, 31, .07);
   --shadow-float: 0 34px 76px rgba(7, 17, 31, .14);
-  --page-width: min(82.5rem, calc(100% - 3rem));
+  --page-width: min(86rem, calc(100% - 3rem));
   --header-height: 5.75rem;
   --ease-out: cubic-bezier(.2, .75, .25, 1);
 }
