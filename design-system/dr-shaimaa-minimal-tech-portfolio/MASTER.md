@@ -47,6 +47,7 @@ A bilingual clinical portfolio where real dental work is the primary proof. The 
 - WhatsApp is a persistent contact shortcut, while the CV remains a first-viewport and closing-CTA action.
 - Touch targets are at least `44px`; keyboard focus is always visible.
 - Reduced motion renders content in its final state.
+- Scrollbars use a slim technical rail with a high-contrast cyan thumb, clear hover and active states, cross-browser fallbacks, and a dark-surface variant for the zoomed gallery viewer. Native scrolling behavior is never replaced.
 
 ## Responsive rules
 

@@ -12,6 +12,11 @@
   --color-line-strong: #9eb7c5;
   --color-focus: #075985;
   --color-danger: #b91c1c;
+  --scrollbar-size: .75rem;
+  --scrollbar-track: #e5eff4;
+  --scrollbar-thumb-start: #24b7ed;
+  --scrollbar-thumb-end: #0277b5;
+  --scrollbar-thumb-active: #075985;
   --space-1: .25rem;
   --space-2: .5rem;
   --space-3: .75rem;
