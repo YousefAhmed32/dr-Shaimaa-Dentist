@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useLanguage } from "../context/LanguageContext";
 import Lightbox from "./Lightbox";
 
-export default function Gallery({ items, categories = [], showFilters = false, limit }) {
+export default function Gallery({ items, categories = [], showFilters = false, limit, eager = false }) {
   const { t, isArabic } = useLanguage();
   const [filter, setFilter] = useState("all");
   const [activeIndex, setActiveIndex] = useState(null);
@@ -41,11 +41,14 @@ export default function Gallery({ items, categories = [], showFilters = false, l
                 initial={reduceMotion ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={reduceMotion ? undefined : { opacity: 0 }}
+                whileHover={reduceMotion ? undefined : { y: -7, rotateX: 1.2, rotateY: index % 2 ? -0.8 : 0.8 }}
+                whileTap={reduceMotion ? undefined : { scale: 0.995 }}
+                style={{ transformPerspective: 1200 }}
                 transition={{ duration: .24, ease: [.22, 1, .36, 1] }}
               >
                 <button type="button" className="gallery-open" onClick={() => setActiveIndex(index)} aria-label={`${t.common.openImage}: ${title}`}>
                   <span className="gallery-image">
-                    <img src={media.path} alt={title} loading="lazy" decoding="async" />
+                    <img src={media.path} alt={title} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : "auto"} decoding="async" />
                     <span className="expand-chip"><Expand aria-hidden="true" /></span>
                   </span>
                   <span className="gallery-caption">

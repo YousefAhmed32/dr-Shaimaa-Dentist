@@ -52,7 +52,7 @@ export default function HomePage() {
 
       <RevealSection direction="right" className="content-section home-work shell">
         <SectionHeading kicker={t.home.casesKicker} title={t.home.casesTitle} lead={t.home.casesLead} />
-        <Gallery items={featuredCases} />
+        <Gallery items={featuredCases} eager />
         <div className="section-action">
           <Link className="button button-section" to="/cases"><span>{isArabic ? "استعرض معرض الأعمال كاملًا" : "Explore the complete work archive"}</span><ArrowLeft aria-hidden="true" /></Link>
         </div>
@@ -60,7 +60,7 @@ export default function HomePage() {
 
       <RevealSection direction="left" className="content-section home-credentials shell">
         <SectionHeading kicker={t.home.credentialsKicker} title={t.home.credentialsTitle} lead={t.home.credentialsLead} />
-        <Gallery items={credentialMedia.slice(0, 3)} />
+        <Gallery items={credentialMedia.slice(0, 3)} eager />
         <div className="section-action">
           <Link className="button button-section" to="/credentials"><span>{isArabic ? "استعرض جميع الشهادات والاعتمادات" : "Explore all credentials"}</span><ArrowLeft aria-hidden="true" /></Link>
         </div>
@@ -69,7 +69,7 @@ export default function HomePage() {
       <RevealSection direction="right" className="content-section content-section--contrast">
         <div className="shell">
           <SectionHeading kicker={t.home.systemsKicker} title={t.home.systemsTitle} lead={t.home.systemsLead} />
-          <Gallery items={conceptMedia} limit={3} />
+          <Gallery items={conceptMedia} limit={3} eager />
         </div>
       </RevealSection>
 

@@ -38,9 +38,10 @@ A bilingual clinical portfolio where real dental work is the primary proof. The 
 ## Interaction
 
 - Navigation completes on the first click; route animation may not delay or blank content.
-- Gallery images open in an accessible dialog with close, zoom, previous, and next controls.
+- Gallery images open fully fitted inside the available viewport, with close, zoom, previous, and next controls. Scrolling is introduced only after deliberate zoom.
 - Filters animate only the content state they change.
-- The practice-area rail uses a continuous marquee that pauses on hover and becomes static under reduced motion.
+- The practice-area rail is a dark, structured capability band with icon-led modules, a visible pause control, hover/focus pause, and a static reduced-motion fallback.
+- Gallery cards use restrained perspective lift, a single scan highlight, and clear keyboard focus; depth must never compromise image legibility.
 - Homepage sections use alternating physical left/right wipe reveals at section level; never animate every text line independently.
 - WhatsApp is a persistent contact shortcut, while the CV remains a first-viewport and closing-CTA action.
 - Touch targets are at least `44px`; keyboard focus is always visible.
