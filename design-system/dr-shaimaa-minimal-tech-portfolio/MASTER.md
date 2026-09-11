@@ -34,6 +34,7 @@ A bilingual clinical portfolio where real dental work is the primary proof. The 
 3. A clear archive action sits after the six-card grid.
 4. Three credentials appear on the homepage, followed by their archive action.
 5. Profile and contact use editorial and contrast compositions, not another repeated card grid.
+6. The profile introduction uses the official King Salman International University logo as an educational credential, preserving its original colors, proportions, and clear space. Oversized initial-only monograms are avoided outside the compact header mark.
 
 ## Interaction
 

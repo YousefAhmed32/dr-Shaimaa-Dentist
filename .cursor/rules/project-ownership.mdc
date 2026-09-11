@@ -1,0 +1,12 @@
+---
+description: Preserve human project ownership and prevent automated attribution
+alwaysApply: true
+---
+
+# Project Ownership
+
+- Never add an assistant, automation service, model, or tool as an author, contributor, co-author, creator, or credit.
+- Do not add signatures or attribution trailers such as `Co-authored-by`, `Generated-by`, `Built-by`, or equivalent wording.
+- Keep source files, UI copy, metadata, documentation, commit messages, release notes, and generated assets free of automated branding or attribution.
+- Use only the repository's configured human identity for Git authorship and commits.
+- Do not change existing human ownership or credits unless the project owner explicitly requests it.

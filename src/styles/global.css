@@ -254,7 +254,15 @@ svg { width: 1.2rem; height: 1.2rem; stroke-width: 1.8; }
 .credential-copy dd { margin: 0; color: var(--color-ink-soft); font-size: .82rem; }
 
 .about-grid { padding-block: clamp(4rem, 7vw, 7rem); display: grid; grid-template-columns: minmax(18rem, .76fr) minmax(0, 1.24fr); gap: clamp(3rem, 8vw, 8rem); align-items: start; }
-.monogram-large { color: var(--color-cyan); font-size: clamp(3.4rem, 6vw, 5.8rem); font-weight: 850; line-height: 1; letter-spacing: -.08em; }
+.page-intro-aside:has(.education-identity-visual) { padding: .55rem; overflow: hidden; background: #f4f6f9; }
+.education-identity-visual { position: relative; isolation: isolate; width: 100%; min-height: 11.9rem; margin: 0; padding: .7rem .75rem .65rem; overflow: hidden; display: grid; grid-template-rows: minmax(0, 1fr) auto; align-items: center; gap: .45rem; border-radius: calc(var(--radius-md) - .35rem); background: white; }
+.education-identity-visual::before { content: ""; position: absolute; z-index: -1; inset: 0; background-image: linear-gradient(rgba(13,36,82,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(13,36,82,.05) 1px, transparent 1px); background-size: 2rem 2rem; mask-image: linear-gradient(to bottom, #000, transparent 76%); }
+.education-identity-visual img { width: min(100%, 8.35rem); max-height: 8.35rem; margin-inline: auto; display: block; object-fit: contain; }
+.education-identity-visual figcaption { min-height: 2.5rem; padding-block-start: .55rem; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: .65rem; border-block-start: 1px solid rgba(13,36,82,.14); }
+.education-identity-visual figcaption span { color: #b18422; font-size: .62rem; line-height: 1.6; font-weight: 820; white-space: nowrap; }
+[dir="rtl"] .education-identity-visual figcaption span { line-height: 1.9; }
+.education-identity-visual figcaption strong { color: #0d2452; font-size: .66rem; line-height: 1.55; font-weight: 750; }
+[dir="rtl"] .education-identity-visual figcaption strong { line-height: 1.85; }
 .about-summary { position: sticky; inset-block-start: calc(var(--header-height) + 2rem); }
 .about-summary h2 { margin: 0 0 2rem; font-size: clamp(1.8rem, 3vw, 3rem); line-height: 1.35; font-weight: 610; }
 .about-details > section { padding-block: 2rem; border-block-start: 1px solid var(--color-line); }

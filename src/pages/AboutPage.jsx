@@ -7,7 +7,23 @@ export default function AboutPage() {
   const { t, isArabic } = useLanguage();
   return (
     <>
-      <PageIntro kicker={t.about.kicker} title={t.about.title} lead={t.about.lead} aside={<div className="monogram-large" aria-hidden="true">SM</div>} />
+      <PageIntro
+        kicker={t.about.kicker}
+        title={t.about.title}
+        lead={t.about.lead}
+        aside={(
+          <figure className="education-identity-visual">
+            <img
+              src="/media/brand/king-salman-international-university-logo.jpeg"
+              alt={isArabic ? "شعار جامعة الملك سلمان الدولية" : "King Salman International University logo"}
+            />
+            <figcaption>
+              <span>{isArabic ? "الجامعة" : "Alma mater"}</span>
+              <strong>{isArabic ? "جامعة الملك سلمان الدولية" : "King Salman International University"}</strong>
+            </figcaption>
+          </figure>
+        )}
+      />
       <section className="about-grid shell">
         <article className="about-summary">
           <p className="section-kicker">{t.about.summaryTitle}</p>
