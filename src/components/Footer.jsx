@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="shell footer-grid">
         <div>
-          <p className="section-kicker">06 / {t.common.contact}</p>
+          <p className="section-kicker">{t.common.contact}</p>
           <h2>{t.brandName}</h2>
           <p className="footer-role">{t.brandRole}</p>
         </div>

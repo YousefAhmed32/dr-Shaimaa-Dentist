@@ -7,6 +7,7 @@
   --color-cyan: #0284c7;
   --color-cyan-bright: #0ea5e9;
   --color-cyan-pale: #dff4fc;
+  --color-gold: #b88b43;
   --color-line: #c9dae3;
   --color-line-strong: #9eb7c5;
   --color-focus: #075985;
@@ -30,6 +31,6 @@
   --shadow-card: 0 18px 44px rgba(7, 17, 31, .07);
   --shadow-float: 0 34px 76px rgba(7, 17, 31, .14);
   --page-width: min(82.5rem, calc(100% - 3rem));
-  --header-height: 5.125rem;
+  --header-height: 5.75rem;
   --ease-out: cubic-bezier(.2, .75, .25, 1);
 }

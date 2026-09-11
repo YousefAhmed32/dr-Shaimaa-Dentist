@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Expand, Image as ImageIcon } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useLanguage } from "../context/LanguageContext";
 import Lightbox from "./Lightbox";
 
@@ -7,6 +8,7 @@ export default function Gallery({ items, categories = [], showFilters = false, l
   const { t, isArabic } = useLanguage();
   const [filter, setFilter] = useState("all");
   const [activeIndex, setActiveIndex] = useState(null);
+  const reduceMotion = useReducedMotion();
 
   const filtered = useMemo(() => {
     const next = filter === "all" ? items : items.filter((media) => media.category === filter);
@@ -27,11 +29,20 @@ export default function Gallery({ items, categories = [], showFilters = false, l
       ) : null}
 
       {filtered.length ? (
-        <div className="gallery-grid">
+        <motion.div className="gallery-grid" layout={!reduceMotion}>
+          <AnimatePresence mode="popLayout" initial={false}>
           {filtered.map((media, index) => {
             const title = isArabic ? media.titleAr : media.titleEn;
             return (
-              <article className={`gallery-card gallery-card--${media.kind}`} key={media.id}>
+              <motion.article
+                className={`gallery-card gallery-card--${media.kind}`}
+                key={media.id}
+                layout={!reduceMotion}
+                initial={reduceMotion ? false : { opacity: 0, y: 18, scale: .98 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: .15 }}
+                transition={{ duration: .44, ease: [.22, 1, .36, 1], delay: Math.min(index, 5) * .035 }}
+              >
                 <button type="button" className="gallery-open" onClick={() => setActiveIndex(index)} aria-label={`${t.common.openImage}: ${title}`}>
                   <span className="gallery-image">
                     <img src={media.path} alt={title} loading="lazy" decoding="async" />
@@ -42,10 +53,11 @@ export default function Gallery({ items, categories = [], showFilters = false, l
                     <ImageIcon aria-hidden="true" />
                   </span>
                 </button>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+          </AnimatePresence>
+        </motion.div>
       ) : <p className="empty-state">{t.cases.empty}</p>}
 
       <Lightbox items={filtered} activeIndex={activeIndex} onClose={() => setActiveIndex(null)} onChange={setActiveIndex} />

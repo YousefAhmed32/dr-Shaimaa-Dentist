@@ -30,7 +30,7 @@ export default function AboutPage() {
         </div>
       </section>
       <section className="contact-band shell">
-        <div><p className="section-kicker">06 / {t.common.contact}</p><h2>{isArabic ? "متاحة للفرص المهنية والتعاون السريري." : "Open to professional opportunities and clinical collaboration."}</h2></div>
+        <div><p className="section-kicker">06 / {t.common.contact}</p><h2>{isArabic ? "متاحة لفرص العمل والتعاون مع العيادات." : "Open to professional opportunities and clinic collaboration."}</h2></div>
         <address>
           <a href="mailto:shymaahassan39@gmail.com"><Mail aria-hidden="true" />shymaahassan39@gmail.com</a>
           <a href="tel:+201118814870"><Phone aria-hidden="true" /><bdi>+20 111 881 4870</bdi></a>

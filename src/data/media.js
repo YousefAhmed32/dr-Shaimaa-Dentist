@@ -14,10 +14,10 @@ export const mediaItems = [
   item("r09", "/media/restorative-dentistry/restorative-rubber-dam-posterior-buildup.jpeg", "restorative", "Posterior build-up under rubber dam", "بناء خلفي تحت العزل المطاطي"),
 
   item("c01", "/media/clinical-cases/case01-isolation-matrix-preparation.jpeg", "clinical", "Isolation, matrix placement and preparation", "العزل وتركيب الماتريكس وتحضير التجويف"),
-  item("c02", "/media/clinical-cases/case02-broken-crown-pre-op.jpeg", "clinical", "Broken clinical crown — pre-operative", "كسر بالتاج السريري — قبل العلاج"),
+  item("c02", "/media/clinical-cases/case02-broken-crown-pre-op.jpeg", "clinical", "Broken clinical crown — pre-operative", "كسر في الجزء الظاهر من السن — قبل العلاج"),
   item("c03", "/media/clinical-cases/case02-rubber-dam-butterfly-clamp.jpeg", "clinical", "Butterfly clamp rubber dam isolation", "عزل مطاطي باستخدام Butterfly Clamp"),
   item("c04", "/media/clinical-cases/case03-cervical-reconstruction-transformation.jpeg", "clinical", "Cervical reconstruction transformation", "إعادة بناء عنق السن — النتيجة التحويلية"),
-  item("c05", "/media/clinical-cases/case03-clinical-quadrant-view.jpeg", "clinical", "Clinical quadrant overview", "منظر سريري شامل للربع السني"),
+  item("c05", "/media/clinical-cases/case03-clinical-quadrant-view.jpeg", "clinical", "Clinical quadrant overview", "منظر عام للربع السني"),
   item("c06", "/media/clinical-cases/case03-occlusal-cavity-prep-rubber-dam.jpeg", "clinical", "Occlusal cavity preparation under rubber dam", "تحضير إطباقي تحت العزل المطاطي"),
   item("c07", "/media/clinical-cases/case03-pediatric-anterior-aesthetic-makeover.jpeg", "clinical", "Pediatric anterior aesthetic restoration", "ترميم تجميلي أمامي لطفل"),
   item("c08", "/media/clinical-cases/case03-posterior-composite-art-transformation.jpeg", "clinical", "Posterior composite anatomical transformation", "إعادة تشكيل تشريحي بكومبوزيت خلفي"),
@@ -39,7 +39,7 @@ export const mediaItems = [
   item("p05", "/media/prosthodontics/endocrown-preparation-retraction-cord.jpeg", "prosthodontics", "Endocrown preparation and retraction cord", "تحضير Endocrown وخيط إزاحة اللثة"),
   item("p06", "/media/prosthodontics/maxillary-bridge-cemented-after.jpeg", "prosthodontics", "Maxillary bridge — after cementation", "جسر علوي — بعد التثبيت"),
   item("p07", "/media/prosthodontics/maxillary-edentulous-space-before.jpeg", "prosthodontics", "Maxillary edentulous space — pre-operative", "فراغ سني علوي — قبل العلاج"),
-  item("p08", "/media/prosthodontics/metal-framework-try-in.jpeg", "prosthodontics", "Metal framework clinical try-in", "تجربة الإطار المعدني سريريًا"),
+  item("p08", "/media/prosthodontics/metal-framework-try-in.jpeg", "prosthodontics", "Metal framework clinical try-in", "تجربة الإطار المعدني داخل الفم"),
 
   item("d01", "/media/concept/floating-ceramic-molar.png", "concept", "Floating ceramic molar", "الضرس السيراميكي العائم", "concept"),
   item("d02", "/media/concept/glass-root-canal-tooth.png", "concept", "Glass tooth with illuminated root canals", "سن زجاجي بقنوات جذرية مضيئة", "concept"),
@@ -48,7 +48,7 @@ export const mediaItems = [
   item("d05", "/media/concept/rubber-dam-isolation.png", "concept", "Absolute isolation visual system", "النظام البصري للعزل المطلق", "concept"),
   item("d06", "/media/concept/digital-dental-arches.png", "concept", "Minimal digital dental arches", "أقواس سنية رقمية بنمط Minimal Tech", "concept"),
 
-  item("a01", "/media/certificates-and-awards/cert-asker-orthodontics-ada-cerp-84hrs.png", "credentials", "Clinical Orthodontic Secrets — 84 credit hours", "دورة أسرار التقويم السريري — 84 ساعة معتمدة", "credential"),
+  item("a01", "/media/certificates-and-awards/cert-asker-orthodontics-ada-cerp-84hrs.png", "credentials", "Clinical Orthodontic Secrets — 84 credit hours", "دورة أسرار تقويم الأسنان — 84 ساعة معتمدة", "credential"),
   item("a02", "/media/certificates-and-awards/cert-capp-ada-cerp-periodontology-webinar-1hr.jpeg", "credentials", "Periodontology treatment guidelines — 1 CE hour", "إرشادات العلاج في دواعم الأسنان — ساعة معتمدة", "credential"),
   item("a03", "/media/certificates-and-awards/cert-idc23-international-dental-congress-18hrs.jpeg", "credentials", "International Dental Congress 2023 — 18 hours", "المؤتمر الدولي لطب الأسنان 2023 — 18 ساعة", "credential"),
   item("a04", "/media/certificates-and-awards/cert-idc26-international-dental-congress-24hrs.jpeg", "credentials", "International Dental Congress 2026 — 24 hours", "المؤتمر الدولي لطب الأسنان 2026 — 24 ساعة", "credential"),

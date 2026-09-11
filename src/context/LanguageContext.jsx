@@ -15,8 +15,8 @@ export function LanguageProvider({ children }) {
     document.documentElement.lang = language;
     document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
     document.title = language === "ar"
-      ? "د. شيماء محمود حسن | المعرض السريري"
-      : "Dr. Shaimaa Mahmoud Hassan | Clinical Portfolio";
+      ? "د. شيماء محمود حسن | أعمال طب الأسنان"
+      : "Dr. Shaimaa Mahmoud Hassan | Dental Portfolio";
     localStorage.setItem(STORAGE_KEY, language);
   }, [language]);
 
