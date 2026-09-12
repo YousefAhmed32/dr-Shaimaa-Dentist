@@ -1,0 +1,19 @@
+{
+  "name": "د. شيماء محمود حسن | أعمال طب الأسنان",
+  "short_name": "د. شيماء",
+  "description": "الملف المهني والأعمال السريرية لد. شيماء محمود حسن.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7fafc",
+  "theme_color": "#07111f",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

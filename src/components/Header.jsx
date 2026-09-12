@@ -23,7 +23,7 @@ export default function Header() {
   return (
     <header className="site-header">
       <NavLink className="brand" to="/" aria-label={t.nav.home}>
-        <span className="brand-mark" aria-hidden="true">SM</span>
+        <span className="brand-mark" aria-hidden="true"><img src="/favicon.svg" alt="" /></span>
         <span className="brand-copy"><strong>{t.brandName}</strong><small>{t.brandRole}</small></span>
       </NavLink>
       <nav className="desktop-nav" aria-label={t.nav.home}>
