@@ -1,18 +1,21 @@
 import { ArrowLeft, Download, MessageCircle, MoveUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { Link } from "react-router-dom";
+import CaseGallery from "../components/CaseGallery";
 import Gallery from "../components/Gallery";
 import SectionHeading from "../components/SectionHeading";
 import RevealSection from "../components/RevealSection";
 import SpecialtyMarquee from "../components/SpecialtyMarquee";
 import { useLanguage } from "../context/LanguageContext";
 import { getWhatsAppHref } from "../data/contact";
-import { clinicalMedia, conceptMedia, credentialMedia } from "../data/media";
+import { conceptMedia, credentialMedia } from "../data/media";
+import { useClinicalCases } from "../hooks/useClinicalCases";
 
 export default function HomePage() {
   const { t, isArabic } = useLanguage();
   const reduceMotion = useReducedMotion();
-  const featuredCases = clinicalMedia.filter(({ id }) => ["r04", "r08", "p03", "e02", "c04", "c07"].includes(id));
+  const { cases } = useClinicalCases();
+  const featuredCases = cases.filter(({ featured }) => featured).slice(0, 6);
 
   return (
     <>
@@ -52,7 +55,7 @@ export default function HomePage() {
 
       <RevealSection direction="right" className="content-section home-work shell">
         <SectionHeading kicker={t.home.casesKicker} title={t.home.casesTitle} lead={t.home.casesLead} />
-        <Gallery items={featuredCases} eager />
+        <CaseGallery cases={featuredCases} eager />
         <div className="section-action">
           <Link className="button button-section" to="/cases"><span>{isArabic ? "استعرض معرض الأعمال كاملًا" : "Explore the complete work archive"}</span><ArrowLeft aria-hidden="true" /></Link>
         </div>
