@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
+import { fileURLToPath } from "node:url";
 
-dotenv.config();
+dotenv.config({ path: fileURLToPath(new URL("../.env", import.meta.url)) });
 
 const required = ["MONGODB_URI", "JWT_SECRET"];
 const missing = required.filter((key) => !process.env[key]);

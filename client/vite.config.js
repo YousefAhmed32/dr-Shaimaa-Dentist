@@ -10,8 +10,8 @@ export default defineConfig(({ mode }) => {
       port: Number(env.VITE_PORT || 5173),
       strictPort: true,
       proxy: {
-        "/api": { target: `http://127.0.0.1:${env.PORT || 5000}`, changeOrigin: true },
-        "/uploads": { target: `http://127.0.0.1:${env.PORT || 5000}`, changeOrigin: true },
+        "/api": { target: `http://127.0.0.1:${env.VITE_API_PORT || 5000}`, changeOrigin: true },
+        "/uploads": { target: `http://127.0.0.1:${env.VITE_API_PORT || 5000}`, changeOrigin: true },
       },
     },
     preview: {

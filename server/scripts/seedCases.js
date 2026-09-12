@@ -1,6 +1,6 @@
 import { connectDatabase } from "../config/database.js";
 import Case from "../models/Case.js";
-import { curatedCases } from "../../src/data/cases.js";
+import { curatedCases } from "../../client/src/data/cases.js";
 
 await connectDatabase();
 for (const item of curatedCases) {

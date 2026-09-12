@@ -1,8 +1,9 @@
 import crypto from "node:crypto";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import multer from "multer";
 
-export const uploadsDirectory = path.resolve("server/uploads");
+export const uploadsDirectory = fileURLToPath(new URL("../uploads/", import.meta.url));
 const storage = multer.diskStorage({
   destination: uploadsDirectory,
   filename: (_request, file, callback) => {

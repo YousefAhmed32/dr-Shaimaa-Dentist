@@ -1,48 +1,89 @@
 # Dr. Shaimaa Clinical Portfolio
 
-A bilingual Arabic/English MERN portfolio for Dr. Shaimaa Mahmoud Hassan. The React interface presents structured clinical cases and credentials, while the Express and MongoDB backend provides visitor accounts, protected administration, statistics, and ordered clinical-image uploads.
+A bilingual Arabic/English MERN portfolio with a public clinical-work archive, visitor accounts, and protected administration.
 
-## Stack
+## Project structure
 
-- React 19, Vite, React Router, Motion
-- Node.js, Express 5, MongoDB, Mongoose
-- JWT authentication in HTTP-only cookies
-- Role-based access for `admin` and `client`
-- Multer image uploads with ordered treatment stages
+```text
+client/                 React + Vite frontend
+  public/               Clinical media, CV, favicon, and web manifest
+  src/                  Pages, components, contexts, and styles
+  package.json
+server/                 Express + MongoDB backend
+  config/               Environment and database setup
+  middleware/           Authentication and image uploads
+  models/               User and clinical-case schemas
+  routes/               Auth, case, and admin APIs
+  scripts/              Database seed commands
+  uploads/              Runtime uploads; contents are not committed
+  .env.example
+  package.json
+deploy/                 systemd and Nginx examples for Ubuntu VPS
+deploy.sh               Repeatable VPS build, restart, and health check
+package.json            Root development orchestration
+```
 
 ## Local setup
 
-1. Install dependencies with `npm install`.
-2. Copy `.env.example` to `.env` and replace the example secret, admin email, and temporary password.
-3. Start MongoDB locally or set `MONGODB_URI` to a MongoDB Atlas connection string.
-4. Import the curated clinical work with `npm run seed`.
-5. Create or reset the first administrator with `npm run seed:admin`.
-6. Start both the API and React client with `npm run dev`.
+1. Install the root tools and both applications:
+
+   ```bash
+   npm install
+   npm run setup
+   ```
+
+2. Copy `server/.env.example` to `server/.env` and replace the database URI, JWT secret, administrator email, and temporary password.
+3. Optional: copy `client/.env.example` to `client/.env` to change local ports.
+4. Seed the curated cases and first administrator:
+
+   ```bash
+   npm run seed
+   npm run seed:admin
+   ```
+
+5. Start React and Express together:
+
+   ```bash
+   npm run dev
+   ```
 
 Local addresses:
 
 - Website: `http://127.0.0.1:5173`
-- Sign in: `http://127.0.0.1:5173/account`
+- Account: `http://127.0.0.1:5173/account`
 - Administration: `http://127.0.0.1:5173/admin`
-- API health check: `http://127.0.0.1:5000/api/health`
+- API health: `http://127.0.0.1:5000/api/health`
 
-The initial administrator must change the temporary password before administration endpoints become available.
+## Production VPS
 
-## Main API routes
+The production server reads `server/.env` and serves the built React application from `client/dist`. Set at least:
 
-- `POST /api/auth/register` — create a visitor account
-- `POST /api/auth/login` — sign in
-- `POST /api/auth/logout` — end the session
-- `PATCH /api/auth/password` — change password
-- `GET /api/cases` — published clinical cases
-- `POST /api/cases` — add a structured case (admin)
-- `PATCH /api/cases/:id` — publish, draft, feature, or edit a case (admin)
-- `DELETE /api/cases/:id` — delete a dashboard-created case (admin)
-- `GET /api/admin/stats` — user, case, and image totals (admin)
-- `GET /api/admin/users` — paginated registered users (admin)
+```dotenv
+NODE_ENV=production
+PORT=5000
+MONGODB_URI=mongodb://127.0.0.1:27017/dr_shaimaa_portfolio
+CLIENT_URL=https://dr-shaimaa-dentist.yansytech.com
+JWT_SECRET=replace-with-a-long-random-production-secret
+```
 
-## Production
+Install the supplied service and Nginx examples after confirming their paths and domain:
 
-Run `npm run build`, set `NODE_ENV=production`, and start with `npm start`. Serve the Node application behind HTTPS and provide persistent storage for `server/uploads`, or replace local uploads with object storage before using multiple server instances.
+```bash
+sudo cp deploy/dr-shaimaa-dentist-backend.service.example /etc/systemd/system/dr-shaimaa-dentist-backend.service
+sudo cp deploy/nginx.conf.example /etc/nginx/sites-available/dr-shaimaa-dentist
+sudo ln -s /etc/nginx/sites-available/dr-shaimaa-dentist /etc/nginx/sites-enabled/dr-shaimaa-dentist
+sudo systemctl daemon-reload
+sudo systemctl enable --now dr-shaimaa-dentist-backend.service
+sudo nginx -t && sudo systemctl reload nginx
+```
 
-Never commit `.env`; it is intentionally ignored by Git.
+For later releases, run from the repository root:
+
+```bash
+git pull --ff-only origin main
+sudo ./deploy.sh
+```
+
+`deploy.sh` uses direct shell commands only, prevents concurrent deployments, builds `client`, installs production dependencies in `server`, restarts systemd, checks `/api/health`, validates Nginx, and prints service logs if startup fails.
+
+Use HTTPS before opening the website publicly. Keep `server/.env` and uploaded clinical images out of Git, and back up MongoDB plus `server/uploads` before production updates.

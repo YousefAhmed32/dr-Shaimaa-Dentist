@@ -1,15 +1,18 @@
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import { connectDatabase } from "./config/database.js";
 import { env } from "./config/env.js";
+import { uploadsDirectory } from "./middleware/upload.js";
 import adminRoutes from "./routes/admin.js";
 import authRoutes from "./routes/auth.js";
 import caseRoutes from "./routes/cases.js";
 
 const app = express();
+const clientDistDirectory = fileURLToPath(new URL("../client/dist/", import.meta.url));
 if (env.nodeEnv === "production") app.set("trust proxy", 1);
 app.disable("x-powered-by");
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
@@ -17,7 +20,7 @@ app.use(cors({ origin: (origin, callback) => (!origin || env.clientUrls.includes
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: true, limit: "1mb" }));
 app.use(cookieParser());
-app.use("/uploads", express.static(path.resolve("server/uploads"), { maxAge: env.nodeEnv === "production" ? "7d" : 0, immutable: env.nodeEnv === "production" }));
+app.use("/uploads", express.static(uploadsDirectory, { maxAge: env.nodeEnv === "production" ? "7d" : 0, immutable: env.nodeEnv === "production" }));
 
 app.get("/api/health", (_request, response) => response.json({ status: "ok" }));
 app.use("/api/auth", authRoutes);
@@ -26,8 +29,8 @@ app.use("/api/admin", adminRoutes);
 app.use("/api", (_request, response) => response.status(404).json({ message: "API route not found" }));
 
 if (env.nodeEnv === "production") {
-  app.use(express.static(path.resolve("dist")));
-  app.use((_request, response) => response.sendFile(path.resolve("dist/index.html")));
+  app.use(express.static(clientDistDirectory));
+  app.use((_request, response) => response.sendFile(path.join(clientDistDirectory, "index.html")));
 }
 
 app.use((error, _request, response, _next) => {

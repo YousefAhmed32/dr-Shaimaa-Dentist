@@ -1,0 +1,19 @@
+[Unit]
+Description=Dr. Shaimaa MERN Portfolio
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/dr-shaimaa-dentist/server
+EnvironmentFile=/var/www/dr-shaimaa-dentist/server/.env
+ExecStart=/usr/bin/node index.js
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
