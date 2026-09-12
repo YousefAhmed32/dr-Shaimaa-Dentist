@@ -7,7 +7,13 @@ SERVER_DIR="$APP_DIR/server"
 SERVICE_NAME="${SERVICE_NAME:-dr-shaimaa-dentist-backend.service}"
 APP_USER="${APP_USER:-www-data}"
 APP_GROUP="${APP_GROUP:-www-data}"
-PORT="${PORT:-5000}"
+NPM_REGISTRY="${NPM_REGISTRY:-https://registry.npmjs.org/}"
+PORT_FILE="$APP_DIR/.port"
+if [[ -f "$PORT_FILE" ]]; then
+  PORT="$(tr -d '[:space:]' < "$PORT_FILE")"
+else
+  PORT="${PORT:-5000}"
+fi
 HEALTH_URL="${HEALTH_URL:-http://127.0.0.1:${PORT}/api/health}"
 LOCK_FILE="${LOCK_FILE:-/tmp/dr-shaimaa-dentist-deploy.lock}"
 
@@ -20,20 +26,27 @@ for command_name in node npm curl systemctl flock; do
   command -v "$command_name" >/dev/null 2>&1 || fail "$command_name is not installed"
 done
 
+[[ "$PORT" =~ ^[0-9]+$ ]] || fail ".port must contain a numeric port"
+
 [[ -f "$CLIENT_DIR/package-lock.json" ]] || fail "client/package-lock.json is missing"
 [[ -f "$SERVER_DIR/package-lock.json" ]] || fail "server/package-lock.json is missing"
 [[ -f "$SERVER_DIR/.env" ]] || fail "server/.env is missing"
 grep -Eq '^NODE_ENV=production$' "$SERVER_DIR/.env" || fail "NODE_ENV=production is required in server/.env"
+if grep -q '^PORT=' "$SERVER_DIR/.env"; then
+  sed -i "s/^PORT=.*/PORT=$PORT/" "$SERVER_DIR/.env"
+else
+  printf 'PORT=%s\n' "$PORT" >> "$SERVER_DIR/.env"
+fi
 
 exec 9>"$LOCK_FILE"
 flock -n 9 || fail "another deployment is already running"
 
 printf 'Installing client dependencies...\n'
-npm ci --prefix "$CLIENT_DIR" --no-audit --no-fund
+npm ci --prefix "$CLIENT_DIR" --include=dev --no-audit --no-fund --registry="$NPM_REGISTRY"
 npm run build --prefix "$CLIENT_DIR"
 
 printf 'Installing server dependencies...\n'
-npm ci --prefix "$SERVER_DIR" --omit=dev --no-audit --no-fund
+npm ci --prefix "$SERVER_DIR" --omit=dev --no-audit --no-fund --registry="$NPM_REGISTRY"
 mkdir -p "$SERVER_DIR/uploads"
 chown -R "$APP_USER:$APP_GROUP" "$SERVER_DIR/uploads"
 
