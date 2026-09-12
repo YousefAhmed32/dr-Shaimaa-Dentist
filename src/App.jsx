@@ -1,12 +1,14 @@
 import { lazy, Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const CasesPage = lazy(() => import("./pages/CasesPage"));
 const CredentialsPage = lazy(() => import("./pages/CredentialsPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const AdminPage = lazy(() => import("./pages/AdminPage"));
+const AccountPage = lazy(() => import("./pages/AccountPage"));
 
 export default function App() {
   return (
@@ -17,7 +19,8 @@ export default function App() {
           <Route path="cases" element={<CasesPage />} />
           <Route path="credentials" element={<CredentialsPage />} />
           <Route path="about" element={<AboutPage />} />
-          <Route path="admin" element={<AdminPage />} />
+          <Route path="account" element={<AccountPage />} />
+          <Route path="admin" element={<ProtectedRoute admin><AdminPage /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

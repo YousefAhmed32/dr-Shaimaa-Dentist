@@ -3,3 +3,5 @@ dist/
 *.log
 *.tar.gz
 .env
+server/uploads/*
+!server/uploads/.gitkeep
